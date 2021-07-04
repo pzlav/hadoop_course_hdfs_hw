@@ -1,0 +1,1 @@
+{"name":"sbt","version":"1.5.4","bspVersion":"2.0.0-M5","languages":["scala"],"argv":["/home/nastya/.jdks/openjdk-16.0.1/bin/java","-Xms100m","-Xmx100m","-classpath","/home/nastya/.local/share/JetBrains/IdeaIC2021.1/Scala/launcher/sbt-launch.jar","xsbt.boot.Boot","-bsp","--sbt-launch-jar=/home/nastya/.local/share/JetBrains/IdeaIC2021.1/Scala/launcher/sbt-launch.jar"]}
