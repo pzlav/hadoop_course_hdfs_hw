@@ -96,22 +96,31 @@ object myapp extends App{
     val in = fileSystem.open(sourcepath)
     val destpath = new Path(filedest)
     val isDestExist = isFileExist(filedest)
-    val out:FSDataOutputStream = if (isDestExist) {
+    val out: FSDataOutputStream = if (isDestExist) {
       println(f"---------- Merging to existing file:  ${filedest}")
       fileSystem.append(destpath)
     } else {
       println(f"---------- Merging to new file:  ${filedest}")
       fileSystem.create(destpath)
     }
-    val b = new Array[Byte](1024)
-    var numBytes = in.read(b)
-    while (numBytes > 0) {
-      out.write(b, 0, numBytes)
-      numBytes = in.read(b)
+    try {
+      val b = new Array[Byte](1024)
+      var numBytes = in.read(b)
+      while (numBytes > 0) {
+        out.write(b, 0, numBytes)
+        numBytes = in.read(b)
+      }
     }
-    in.close()
-    out.close()
+    catch {
+      case e: Exception => println("Got some kind of exception")
+    } finally {
+      in.close()
+      out.close()
+    }
+
+
   }
+
   println("-"*100)
   println("Removing ods files:")
   removeFile("/ods")
